@@ -1,28 +1,36 @@
 import React from 'react';
 import Post from './Post/Post.jsx'
-import classes from './MyPosts.module.css';
+import classes from './MyPosts.module.css'
 
 
-const postsData = [
-  {id: '1', message: 'hi', like: '3'},
-  {id: '2', message: 'how are you', like: 5}
-]
+const MyPosts = (props) => {
+  const postsElement = props.posts.map(post => <Post message={post.message} like={post.like}/>);
 
-const MyPosts = () => {
+  const newPostElement = React.createRef();
+
+  const addPost = () => {
+    props.addPost();
+  };
+
+  const onPostChange = () => {
+    let text = newPostElement.current.value;
+    props.updateNewPostText(text);
+    
+  };
+
    return ( 
     <div className={classes.postsBlock}>
      <h3>my post</h3> 
        <div>
          <div>
-           <textarea></textarea>
+           <textarea onChange={onPostChange} ref={newPostElement} value={props.newPostText}></textarea>
          </div>
-         <div>
-           <button>add post</button>
+         <div> 
+           <button onClick={addPost}>add post</button>
          </div> 
        </div>
        <div className={classes.posts}>
-         <Post message={postsData[0].message} like={postsData[0].like}/>
-         <Post message={postsData[1].message} like={postsData[1].like}/>
+         { postsElement }
        </div>
     </div>
    )
