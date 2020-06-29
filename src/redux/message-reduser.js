@@ -10,7 +10,7 @@ let initialState = {
         {id: '4', name: 'Katy'},
         {id: '5', name: 'Atrem'}
       ],
-    messeages: [
+    messages: [
         {id: '1', message: 'hi'},
         {id: '2', message: 'how are you'},
         {id: '3', message: 'goog'},
@@ -23,19 +23,21 @@ let initialState = {
 
 const messageReduser = (state = initialState, action) => {
     switch (action.type) {
-        case ADD_MESSAGE: 
-          const newMessage = {
-              id: '6', 
-              message: state.newMessageText
-           };
-          
-            state.messeages.push(newMessage);
-            state.newMessageText = '';
-           return state;
-        case UPDATE_NEW_MESSAGE_TEXT: 
-          state.newMessageText = action.messageText;
-        return state;
-
+        case ADD_MESSAGE: {
+          const newMessage = state.newMessageText
+            
+           return {
+             ...state,
+             newMessageText: '',
+             messages: [...state.messages, {id: '6', message: newMessage}]
+            };
+      
+       }
+        case UPDATE_NEW_MESSAGE_TEXT: {
+         return {
+            ...state,
+            newMessageText: action.messageText};
+        }
         default:
             return state;
     }
