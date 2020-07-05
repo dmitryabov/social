@@ -1,4 +1,13 @@
 
 .describtionBlock {
     padding: 10px;
+    
+}
+
+.profileImg {
+    width: 1000px;
+}
+
+.profileInfo {
+    color: white;
 }

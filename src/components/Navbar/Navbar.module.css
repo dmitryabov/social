@@ -2,12 +2,19 @@
   grid-area: nav;
   background-color: cadetblue;
   padding: 20px;
+  border: 4px double white;
+  background: cadetblue; 
+  padding: 10px; 
 }
 
 .item a{
-  color: blanchedalmond;
+  color: white;
   text-decoration: none;
+  font-size: 25px;
+  margin-bottom: 10px;
+ 
 }
+
 
 .item a.active {
   color: gold;

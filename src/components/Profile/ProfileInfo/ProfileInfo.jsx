@@ -8,14 +8,16 @@ const ProfileInfo = (props) => {
      return <Preloader />
    }
 
+   
+
    return ( 
     <div>
       <div>
-        <img src="https://platform-news.com/ru/wp-content/themes/platform-news/img/slider/01.jpg" alt='avatar'></img>
+        <img className={classes.profileImg} src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcTNA4_AMnRYJ-J-VUt-LWFkLM2VQ8ZKhyaqYA&usqp=CAU" alt='avatar'></img>
       </div>
       <div className={classes.describtionBlock}>
-        <img src={props.profile.photos.large} alt='You '></img>
-        <div>
+        <img className={classes.profileAva} src={props.profile.photos.large} alt='You '></img>
+        <div className={classes.profileInfo}>
           <div>{`О бо мне: ` + props.profile.aboutMe}</div>
           <div>{props.profile.lookingForAJob ? `Ищу работу` : `Не ищу работу`}</div>
           <div>{props.profile.lookingForAJobDescription}</div>

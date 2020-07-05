@@ -1,3 +1,6 @@
+import {profileAPI} from '../api/api'
+
+
 const ADD_POST = 'ADD-POST';
 const UPDATE_NEW_POST_TEXT = 'UPDATE-NEW-POST-TEXT';
 const SER_USER_PROFILE = 'SER_USER_PROFILE';
@@ -41,16 +44,22 @@ const profileReduser = (state = initialState, action) => {
     }
 }
 
-export const addPostActionCreator = () => {
-    return {type: ADD_POST}
-}
+export const addPostActionCreator = () => {return {type: ADD_POST}}
   
-export const updatePostActionCreator = (text) => {
-    return {type: UPDATE_NEW_POST_TEXT, postText: text}
-}
+export const updatePostActionCreator = (text) => { return {type: UPDATE_NEW_POST_TEXT, postText: text}}
 
-export const setUserProfile = (profile) => {
-    return {type: SER_USER_PROFILE, profile}
+export const setUserProfile = (profile) => {return {type: SER_USER_PROFILE, profile}}
+
+
+export const getProfile = (userId) => { 
+    return (dispatch) => {
+        if(!userId) {
+           userId = 2
+        }
+        profileAPI.getProfile(userId).then(data => {
+            dispatch(setUserProfile(data));
+      })
+  }
 }
 
 export default profileReduser; 

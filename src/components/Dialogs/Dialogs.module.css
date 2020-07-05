@@ -8,6 +8,13 @@
   padding: 10px;
 }
 
+.dialogsItem a{
+  color: white;
+  text-decoration: none;
+  font-size: 20px;
+ 
+}
+
 .dialogsItem .active {
     color: gold;
   }

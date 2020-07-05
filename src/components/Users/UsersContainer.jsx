@@ -1,34 +1,21 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import {follow, unfollow, setUsers, setCurrentPage, 
-        setTotalUsersCount, setIsToggleFetching, setIsToggleFollowingProgress} from '../../redux/users-reduser';
+import {follow, unfollow, setCurrentPage, setIsToggleFollowingProgress, getUsers} from '../../redux/users-reduser';
 import Users from './Users';
 import Preloader from '../common/Preloader/Preloader';
-import {usersAPI} from '../../api/api.js';
-
-
+import { withAuthRedirect } from '../Dialogs/hoc/withAuthRedirect';
 
 
 class UsersComponent extends React.Component {
   
   componentDidMount () {
-    this.props.setIsToggleFetching(true);
-  
-    usersAPI.getUsers(this.props.currentPage, this.props.pageSize).then(data => {
-        this.props.setIsToggleFetching(false)
-        this.props.setUsers(data.items)
-        this.props.setTotalUsersCount(data.totalCount / 100);
-    })
+    this.props.getUsers(this.props.currentPage, this.props.pageSize)
+
   }
 
   onPageChanged = (page) => {
     this.props.setCurrentPage(page);
-    this.props.setIsToggleFetching(true)
-    usersAPI.getUsers(page, this.props.pageSize).then(data => {
-        this.props.setIsToggleFetching(false)
-        this.props.setUsers(data.items);
-       
-    })
+    this.props.getUsers(page, this.props.pageSize)
   } 
 
 
@@ -44,7 +31,6 @@ class UsersComponent extends React.Component {
                users={this.props.users}
                unfollow={this.props.unfollow}
                follow={this.props.follow}
-               setIsToggleFollowingProgress={this.props.setIsToggleFollowingProgress}
                followingInPropgress={this.props.followingInPropgress}
              />
             </>
@@ -64,14 +50,15 @@ const mapStateToProps = (state) => {
 };
 
 
+const withRedirect = withAuthRedirect(UsersComponent)
+
+
 
 export default connect(mapStateToProps, 
   {
     follow,
     unfollow,
-    setUsers,
     setCurrentPage,
-    setTotalUsersCount,
-    setIsToggleFetching,
-    setIsToggleFollowingProgress
-})(UsersComponent)
+    setIsToggleFollowingProgress,
+    getUsers
+})(withRedirect)
