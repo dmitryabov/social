@@ -2,8 +2,9 @@ import {profileAPI} from '../api/api'
 
 
 const ADD_POST = 'ADD-POST';
-const UPDATE_NEW_POST_TEXT = 'UPDATE-NEW-POST-TEXT';
 const SER_USER_PROFILE = 'SER_USER_PROFILE';
+const SET_STATUS_PROFILE = 'SEt_STATUS_PROFILE';
+const UPDATE_STATUS_PROFILE = 'UPDATE_STATUS_PROFILE';
 
 
 let initialState = {
@@ -11,15 +12,16 @@ let initialState = {
         {id: '1', message: 'hi', like: '3'},
         {id: '2', message: 'how are you', like: 5}
       ],
-    newPostText: '',
-    profile: null
+   
+    profile: null,
+    status: ''
 }
 
 const profileReduser = (state = initialState, action) => {
     
     switch (action.type){
         case ADD_POST: {
-            const newPost = state.newPostText;
+            let newPost = {id: '5', message: action.newPostText, like: '3'};
              return {
                  ...state,
                  newPostText: '',
@@ -27,11 +29,7 @@ const profileReduser = (state = initialState, action) => {
                 };
              
             }
-        case UPDATE_NEW_POST_TEXT: {
-            return {
-                ...state,
-                newPostText: action.postText};
-           }
+        
 
         case SER_USER_PROFILE: {
             return {
@@ -39,25 +37,54 @@ const profileReduser = (state = initialState, action) => {
                 profile: action.profile};
            }
 
+           case SET_STATUS_PROFILE: {
+            return {
+                ...state,
+                status: action.status};
+           }
+
+           case UPDATE_STATUS_PROFILE: {
+            return {
+                ...state,
+                status: action.status};
+           }
+
         default: 
          return state;
     }
 }
 
-export const addPostActionCreator = () => {return {type: ADD_POST}}
-  
-export const updatePostActionCreator = (text) => { return {type: UPDATE_NEW_POST_TEXT, postText: text}}
-
+export const addPostActionCreator = (newPostText) => {return {type: ADD_POST, newPostText}}
 export const setUserProfile = (profile) => {return {type: SER_USER_PROFILE, profile}}
+export const setStatusProfile = (status) => {return {type: SET_STATUS_PROFILE, status}}
+export const updateStatusProfile = (status) => {return {type: UPDATE_STATUS_PROFILE, status}}
 
 
 export const getProfile = (userId) => { 
     return (dispatch) => {
-        if(!userId) {
-           userId = 2
-        }
+        
         profileAPI.getProfile(userId).then(data => {
             dispatch(setUserProfile(data));
+      })
+  }
+}
+
+export const getProfileStatus = (userId) => { 
+    return (dispatch) => {
+       
+        profileAPI.getStatus(userId).then(data => {
+            dispatch(setStatusProfile(data));
+      })
+  }
+}
+
+export const updateProfileStatus = (status) => { 
+    return (dispatch) => {
+        profileAPI.updateStatus(status)
+        .then(data => {
+            if(data.resultCode === 0) {
+            dispatch(updateStatusProfile(status));
+            }
       })
   }
 }

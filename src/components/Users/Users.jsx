@@ -11,7 +11,6 @@ const Users = (props) => {
     let pagesCount = Math.ceil(props.totalUserCount / props.pageSize);
 
     let pages = [];
-
         for(let i = 1; i <= pagesCount; i++) {
             pages.push(i) 
       }
@@ -23,8 +22,7 @@ const Users = (props) => {
            return <span onClick={ () => props.onPageChanged(page)} className={ props.currentPage === page && classes.selectedPage}>{page}</span>})}
         </div>
        {
-        props.users.map( user => <div className={classes.userInfo} key={user.d + user.fullName}>
-                
+        props.users.map( user => <div className={classes.userInfo} key={user.d + user.fullName}>               
                <span>
                    <div>
                        <NavLink to={'/profile/' + user.id}>

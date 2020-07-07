@@ -7,23 +7,19 @@ import Message from './Message/Message';
 
 const Dialogs = (props) => {
    const newMessageElement = React.createRef();
-
    const onAddMessage = () => {
      props.addMessageAction()
-     
    };
 
    const onMessageChange = () => {
     let text = newMessageElement.current.value;
-    props.updateMessageAction(text)
-   
+    props.updateMessageAction(text)  
   };
 
     return (
     <div className={classes.dialogs}>
         <div className={classes.dialogsItem} >
-          {props.dialogs.map(dialog => <DialogItem name={dialog.name} key={dialog.id} id={dialog.id}/>)}
-            
+          {props.dialogs.map(dialog => <DialogItem name={dialog.name} key={dialog.id} id={dialog.id}/>)}           
         </div>
         <div className={classes.messages}>
           {props.messages.map(message => <Message message={message.message} key={message.id}/>)}
@@ -43,5 +39,7 @@ const Dialogs = (props) => {
     </div>
     )
 }
+
+
 
 export default Dialogs;

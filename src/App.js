@@ -27,8 +27,7 @@ function App(props) {
         <Route path='/users' render={() => <UsersContainer />}/>
         <Route path='/login' render={() => <Login />}/>
       </div>
-    </div>
-    
+    </div>   
   );
 }
 

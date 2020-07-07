@@ -4,13 +4,13 @@ import {follow, unfollow, setCurrentPage, setIsToggleFollowingProgress, getUsers
 import Users from './Users';
 import Preloader from '../common/Preloader/Preloader';
 import { withAuthRedirect } from '../Dialogs/hoc/withAuthRedirect';
+import { compose } from 'redux';
 
 
 class UsersComponent extends React.Component {
   
   componentDidMount () {
     this.props.getUsers(this.props.currentPage, this.props.pageSize)
-
   }
 
   onPageChanged = (page) => {
@@ -50,15 +50,14 @@ const mapStateToProps = (state) => {
 };
 
 
-const withRedirect = withAuthRedirect(UsersComponent)
-
-
-
-export default connect(mapStateToProps, 
-  {
-    follow,
-    unfollow,
-    setCurrentPage,
-    setIsToggleFollowingProgress,
-    getUsers
-})(withRedirect)
+export default compose(
+  connect(mapStateToProps, 
+    {
+      follow,
+      unfollow,
+      setCurrentPage,
+      setIsToggleFollowingProgress,
+      getUsers
+  }),
+  
+)(UsersComponent)
