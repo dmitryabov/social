@@ -31,7 +31,7 @@ const Users = (props) => {
                          alt='ava' 
                          className={classes.userPhoto}>
                          </img>
-                         </NavLink>
+                        </NavLink>
                    </div>
                    <div>
                        {user.followed 
