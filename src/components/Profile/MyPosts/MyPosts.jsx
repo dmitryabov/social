@@ -7,8 +7,6 @@ import { Field, reduxForm } from 'redux-form'
 const MyPosts = (props) => {
   const postsElement = props.posts.map(post => <Post message={post.message} key={post.id}like={post.like}/>);
 
-  const newPostElement = React.createRef();
-
   const onAddPost = (values) => {props.addPost(values.newPostText)};
 
 

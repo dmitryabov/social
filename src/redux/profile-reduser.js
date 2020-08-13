@@ -3,14 +3,14 @@ import {profileAPI} from '../api/api'
 
 const ADD_POST = 'ADD-POST';
 const SER_USER_PROFILE = 'SER_USER_PROFILE';
-const SET_STATUS_PROFILE = 'SEt_STATUS_PROFILE';
+const SET_STATUS_PROFILE = 'SET_STATUS_PROFILE';
 const UPDATE_STATUS_PROFILE = 'UPDATE_STATUS_PROFILE';
 
 
 let initialState = {
     posts: [
         {id: '1', message: 'hi', like: '3'},
-        {id: '2', message: 'how are you', like: 5}
+        {id: '2', message: 'how are you', like: '5'}
       ],
    
     profile: null,
@@ -25,11 +25,10 @@ const profileReduser = (state = initialState, action) => {
              return {
                  ...state,
                  newPostText: '',
-                 posts: [...state.posts, {id: '3', message: newPost, like: '3'}]
+                 posts: [...state.posts, newPost]
                 };
              
             }
-        
 
         case SER_USER_PROFILE: {
             return {

@@ -1,7 +1,7 @@
 import React from 'react';
 import classes from './ProfileInfo.module.css';
 import Preloader from '../../common/Preloader/Preloader';
-import ProfileStatus from './ProfileStatus';
+import ProfileStatusWithHooks from './ProfileStatusWithHooks';
 
 
 
@@ -15,7 +15,7 @@ const ProfileInfo = (props) => {
       <div>
         <img className={classes.profileImg} src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcTNA4_AMnRYJ-J-VUt-LWFkLM2VQ8ZKhyaqYA&usqp=CAU" alt='avatar'></img>
       </div>
-      <div> <ProfileStatus status={props.status} updateProfileStatus={props.updateProfileStatus}/> </div>
+      <div> <ProfileStatusWithHooks status={props.status} updateProfileStatus={props.updateProfileStatus}/> </div>
       <div className={classes.describtionBlock}>
         <img className={classes.profileAva} src={props.profile.photos.large} alt='You '></img>
         <div className={classes.profileInfo}>
