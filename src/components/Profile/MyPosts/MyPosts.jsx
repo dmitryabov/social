@@ -4,11 +4,9 @@ import classes from './MyPosts.module.css';
 import { Field, reduxForm } from 'redux-form'
 
 
-const MyPosts = (props) => {
+const MyPosts = React.memo((props) => {
   const postsElement = props.posts.map(post => <Post message={post.message} key={post.id}like={post.like}/>);
-
   const onAddPost = (values) => {props.addPost(values.newPostText)};
-
 
    return ( 
     <div className={classes.postsBlock}>
@@ -20,14 +18,13 @@ const MyPosts = (props) => {
        </div>
     </div>
    )
-}
+})
 
 
 let AddNewPosrForm = (props) => {
   return <form onSubmit={props.handleSubmit}>
            <div>
              <Field name={'newPostText'} component={'textarea'}/>
-            
            </div>
            <div> 
                <button >add post</button>

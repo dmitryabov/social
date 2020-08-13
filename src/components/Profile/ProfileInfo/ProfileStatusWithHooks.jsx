@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 
 
 
@@ -6,6 +6,10 @@ import React, {useState} from 'react';
 
     let [editMode, setEditMode] = useState(false);
     let [status, setStatus] = useState(props.status);
+
+    useEffect(() => {
+        setEditMode(props.status)
+    }, [props.status]);
 
     const activateEditMode = () => {
         setEditMode(true);

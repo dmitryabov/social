@@ -5,6 +5,7 @@ const ADD_POST = 'ADD-POST';
 const SER_USER_PROFILE = 'SER_USER_PROFILE';
 const SET_STATUS_PROFILE = 'SET_STATUS_PROFILE';
 const UPDATE_STATUS_PROFILE = 'UPDATE_STATUS_PROFILE';
+const DELETE_POST = 'DELETE_POST';
 
 
 let initialState = {
@@ -48,6 +49,10 @@ const profileReduser = (state = initialState, action) => {
                 status: action.status};
            }
 
+           case DELETE_POST: {
+            return {...state, posts: state.posts.filter(p => p.id !== action.id)};
+           }
+
         default: 
          return state;
     }
@@ -57,6 +62,7 @@ export const addPostActionCreator = (newPostText) => {return {type: ADD_POST, ne
 export const setUserProfile = (profile) => {return {type: SER_USER_PROFILE, profile}}
 export const setStatusProfile = (status) => {return {type: SET_STATUS_PROFILE, status}}
 export const updateStatusProfile = (status) => {return {type: UPDATE_STATUS_PROFILE, status}}
+export const deletePost = (id) => {return {type: DELETE_POST, id}}
 
 
 export const getProfile = (userId) => { 
