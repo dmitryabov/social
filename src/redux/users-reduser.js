@@ -1,4 +1,5 @@
-import {usersAPI, followAPI} from '../api/api'
+import {usersAPI, followAPI} from '../api/api';
+import {updateObjectInArray} from '../utils/object-helpers';
 
 const FOLLOW = 'FOLLOW';
 const UNFOLLOW = 'UNFOLLOW';
@@ -24,21 +25,14 @@ const usersReduser = (state = initialState, action) => {
         case FOLLOW:
             return {
                 ...state,
-                users: state.users.map(user => {
-                  if (user.id === action.userId) {
-                      return {...user, followed: true}
-                  } return user;
-                })
+                users: updateObjectInArray(state.users, action.userId, 'id', {followed: true})
+                
             }
 
         case UNFOLLOW:
             return {
                 ...state,
-                users: state.users.map(user => {
-                    if(user.id === action.userId) {
-                        return {...user, followed: false,} 
-                    } return user
-                })
+                users: updateObjectInArray(state.users, action.userId, 'id', {followed: false})
             }
         
         case SET_USERS: {
@@ -89,27 +83,25 @@ export const getUsers = (currentPage, pageSize) => {
 }
 
 export const follow = (userId) => { 
-    return (dispatch) => {
+    return async (dispatch) => {
         dispatch(setIsToggleFollowingProgress(true, userId));
-        followAPI.getUnFollow(userId).then(data => {
-              if(data.resultCode === 0) {
-                  dispatch(followSuccess(userId))
-                }
-                dispatch(setIsToggleFollowingProgress(false, userId))
-        })
+        let data = await followAPI.getUnFollow(userId);      
+        if(data.resultCode === 0) {
+            dispatch(followSuccess(userId))
+        }
+        dispatch(setIsToggleFollowingProgress(false, userId))
   }
 }
 
 
 export const unfollow = (userId) => { 
-    return (dispatch) => {
+    return async (dispatch) => {
         dispatch(setIsToggleFollowingProgress(true, userId));
-             followAPI.getFollow(userId).then(data => {
-                if(data.resultCode === 0) {
-                    dispatch(unfollowSuccess(userId))
-                    }
-                    dispatch(setIsToggleFollowingProgress(false, userId))
-           })
+        let data = await followAPI.getFollow(userId);
+        if(data.resultCode === 0) {
+            dispatch(unfollowSuccess(userId))
+        }
+        dispatch(setIsToggleFollowingProgress(false, userId))
   }
 }
 

@@ -8,7 +8,7 @@ import { reducer as formReducer } from 'redux-form';
 import appReduser from './app-reduser';
 
 
-const { createStore, combineReducers, applyMiddleware } = require("redux");
+const { createStore, combineReducers, applyMiddleware, compose } = require("redux");
 
 
 let redusers = combineReducers({
@@ -21,6 +21,9 @@ let redusers = combineReducers({
     app: appReduser,
 });
 
-let store = createStore(redusers, applyMiddleware(thunkMiddleware));
+const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
+const store = createStore(redusers, composeEnhancers( applyMiddleware(thunkMiddleware)));
+
+//let store = createStore(redusers, applyMiddleware(thunkMiddleware));
 
 export default store;
