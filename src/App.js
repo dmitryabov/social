@@ -5,9 +5,7 @@ import Navbar from './components/Navbar/Navbar';
 import News from './components/News/News';
 import Music from './components/Music/Music';
 import Settincs from './components/Settincs/Settincs';
-import ProfileContainer from './components/Profile/ProfileContainer';
 import { Route, withRouter} from 'react-router-dom';
-import DialogsContainer from './components/Dialogs/DialogsContIainer';
 import UsersContainer from './components/Users/UsersContainer';
 import Login from './components/Login/Login';
 import { connect } from 'react-redux';
@@ -17,6 +15,9 @@ import { compose } from 'redux';
 import { BrowserRouter } from 'react-router-dom';
 import { Provider } from 'react-redux';
 import store from './redux/redux-store';
+import { witchSuspense } from './hoc/witchSuspense';
+const DialogsContainer = React.lazy(() => import('./components/Dialogs/DialogsContIainer'));
+const ProfileContainer = React.lazy(() => import('./components/Profile/ProfileContainer'));
 
 
 class App extends Component {
@@ -32,8 +33,8 @@ render() {
       <HeaderContainer />
       <Navbar />
       <div className='app-wrapper-content'>
-        <Route path='/profile/:userId?' render={() => <ProfileContainer />}/>
-        <Route path='/dialogs' render={() =>  <DialogsContainer />}/>
+        <Route path='/profile/:userId?' render={witchSuspense( ProfileContainer)}/>
+        <Route path='/dialogs' render={witchSuspense( DialogsContainer)}/>
         <Route path='/news' component={News}/>
         <Route path='/music' component={Music}/>
         <Route path='/settincs' component={Settincs}/>
