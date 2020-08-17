@@ -11,3 +11,7 @@
 .profileInfo {
     color: white;
 }
+
+.profileAva {
+    max-width: 200px;
+}
