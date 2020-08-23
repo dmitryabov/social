@@ -5,14 +5,14 @@ import style from "../../common/FormsControls/FormsControls.module.css";
 
 
  const ProfileDataForm = ({handleSubmit, profile, error}) => {
-    return <form onSubmit={handleSubmit}>
+    return <form className={style.text} onSubmit={handleSubmit}>
         {error && <div className={style.formSummaryError}>
             {error}
         </div>
         }
         
       <div><button>save</button></div>
-      <div><b>Полное имя:</b>{createField('Full name', 'fullName', [], Input)}</div>
+      <div ><b>Полное имя:</b>{createField('Full name', 'fullName', [], Input)}</div>
       <div><b>Ищу ли работу:</b>{createField('', 'lookingForAJob', [], Input, {type: 'checkbox'})}</div>
       <div><b>Мои навыки:</b> {createField('My skills', 'lookingForAJobDescription', [], Textarea)}</div>
       <div><b>О бо мне:</b> {createField('About me', 'aboutMe', [], Textarea)}</div>
