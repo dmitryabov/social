@@ -5,7 +5,7 @@
 }
 
 .profileImg {
-    width: 1000px;
+    width: 850px;
 }
 
 .profileInfo {
@@ -13,10 +13,38 @@
 }
 
 .profileAva {
-    max-width: 200px;
+    width: 100%;
 }
 
 .contact {
     padding-left: 10px;
     color: white;
 }
+
+.card:hover {
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+}
+
+.card {
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+    transition: 0.3s;
+    width: 40%;
+}
+
+.container {
+    padding: 2px 16px;
+}
+
+.file {
+    background-color: #f4511e;
+    border: none;
+    color: white;
+    padding: 16px 15px;
+    text-align: center;
+    font-size: 16px;
+    margin: 4px 2px;
+    opacity: 0.6;
+    transition: 0.3s;
+  }
+  
+  .file:hover {opacity: 1}

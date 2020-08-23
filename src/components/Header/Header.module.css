@@ -1,27 +1,67 @@
 .header {
    grid-area: header;
-   background-color: cadetblue;
-   border: 4px double white;
- 
+   background-color: #111;
+   height: 80px;
+   max-width: 1024px;
  }
 
- .header img {
-   width: 35px;
-   height: 45px;
-   margin-left: 20px;
-   margin-top: 3px;
-   
+ .header span {
+  float: left;
+  padding-top: 20px;
+  padding-left: 20px;
  }
 
  .loginBlock {
    float: right;
    color: white;
-   padding-right: 20px;
-   padding-top: 20px;
+   padding-right: 40px;
+   padding-top: 15px;
  }
 
  .loginBlock a {
    color: white;
    text-decoration: none;
-   
  }
+
+ .btn {
+  border: none;
+  background-color: inherit;
+  padding: 14px 28px;
+  font-size: 16px;
+  cursor: pointer;
+  display: inline-block;
+}
+
+/* Green */
+.login {
+  color: white;
+  float: right;
+  padding-top: 20px;
+  padding-right: 20px;
+}
+
+.loginName{
+  float: right;
+  padding-right: 20px;
+  padding-top: 10px;
+}
+
+.login:hover {
+  background-color: white;
+  color: black;
+}
+
+.logo{
+  color: white;
+  float: left;
+  margin-top: 10px;
+  padding-left: 20px;color: #f4f4f4;
+  line-height: 1.2;
+  letter-spacing: .1em;
+  margin: 15px 0;
+  font-size: 20px;
+  font-weight: lighter;
+  text-transform: uppercase;
+  
+}
+

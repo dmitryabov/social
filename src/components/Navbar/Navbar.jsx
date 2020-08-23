@@ -1,12 +1,12 @@
 import React from 'react';
-import classes from './Navbar.module.css';
+import classes from './Navba.module.css';
 import {NavLink} from 'react-router-dom';
  
 
 
 const Navbar = () => {
    return ( 
-    <nav className={classes.nav}>
+    <nav className={classes.sidenav}>
     <div className={classes.item}>
       <NavLink to="/profile" activeClassName={classes.active}>Profile</NavLink>
     </div>

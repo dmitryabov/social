@@ -30,14 +30,16 @@ const ProfileInfo = (props) => {
    }
 
    return ( 
-    <div>
-      <div>
+    <div className={classes.card}>
+      <div className>
+      
         <img className={classes.profileImg} 
           src={"https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcTNA4_AMnRYJ-J-VUt-LWFkLM2VQ8ZKhyaqYA&usqp=CAU"} alt='avatar'>
         </img>  
         <img className={classes.profileAva} src={props.profile.photos.large || userPhoto} alt='You '></img>  
-        {props.isOwner && <input type={'file'} onChange={onMainPhotoSelected}/>}
+        {props.isOwner && <input className={classes.file} type={'file'} onChange={onMainPhotoSelected}/>}
       </div>
+      <div className={classes.container}>
       {editMode 
                  ? <ProfileDataForm onSubmit={onSubmit} initialValues={props.profile} profile={props.profile}/> 
                  : <ProfileData {...props} goToEditMode={() => {setEditMode(true)}}/>} 
@@ -45,7 +47,7 @@ const ProfileInfo = (props) => {
        
         <ProfileStatusWithHooks status={props.status} updateProfileStatus={props.updateProfileStatus}/> 
       </div>
-     
+      </div>
   </div>
    )
 }

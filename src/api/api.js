@@ -55,6 +55,13 @@ export const authAPI = {
     }
 }
 
+export const securityAPI = {
+  getCapcha () {
+    return instance.get(`security/get-captcha-url`);
+  }
+  
+}
+
 export const followAPI = {
     getFollow (userId) {
       return instance.delete(`follow/${userId}`).then( response => { return response.data})
