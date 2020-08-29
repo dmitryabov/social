@@ -5,7 +5,7 @@ import Navbar from './components/Navbar/Navbar';
 import News from './components/News/News';
 import Music from './components/Music/Music';
 import Settincs from './components/Settincs/Settincs';
-import { Route, withRouter} from 'react-router-dom';
+import { Route, withRouter, Switch, Redirect} from 'react-router-dom';
 import UsersContainer from './components/Users/UsersContainer';
 import Login from './components/Login/Login';
 import { connect } from 'react-redux';
@@ -32,7 +32,9 @@ render() {
     <div className="app-wrapper">
       <HeaderContainer />
       <Navbar />
+      <Switch>
       <div className='app-wrapper-content'>
+        <Route path='/' render={() => <Redirect to={'/profile'}/>}/>
         <Route path='/profile/:userId?' render={witchSuspense( ProfileContainer)}/>
         <Route path='/dialogs' render={witchSuspense( DialogsContainer)}/>
         <Route path='/news' component={News}/>
@@ -40,7 +42,9 @@ render() {
         <Route path='/settincs' component={Settincs}/>
         <Route path='/users' render={() => <UsersContainer />}/>
         <Route path='/login' render={() => <Login />}/>
+        <Route path='*' render={() => <div> 404 not found</div>}/>
       </div>
+      </Switch>
     </div>   
   );
  }
