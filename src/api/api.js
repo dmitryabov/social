@@ -42,12 +42,13 @@ export const authAPI = {
     getAuth (endPoint) {
       return instance.get(`auth/${endPoint}`).then( response => { return response.data})
     },
-    login (email, password, rememberMe = false) {
+    login (email, password, rememberMe = false, captcha = null) {
       
       return instance.post(`auth/login`, {
         email,
         password,
         rememberMe,
+        captcha
       }).then( response => { return response.data})
     },
     logout () {
@@ -56,10 +57,9 @@ export const authAPI = {
 }
 
 export const securityAPI = {
-  getCapcha () {
+  getCaptcha () {
     return instance.get(`security/get-captcha-url`);
   }
-  
 }
 
 export const followAPI = {
